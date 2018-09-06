@@ -71,7 +71,16 @@ const salesData = (hours, data) => {
 // ------------------------------------------------------------------------------------------------
 
 const giveValentines = (list) => {
-  // Solution code here...
+	// Solution code here...
+	let valentinesArr = [];
+	list.forEach((nameOne) => {
+		list.forEach((nameTwo) => {
+			if (nameOne !== nameTwo) {
+				valentinesArr.push(`${nameOne} gives a Valentine to ${nameTwo}.`);				
+			}
+		});
+	});
+	return valentinesArr;
 };
 
 // ------------------------------------------------------------------------------------------------
