@@ -58,6 +58,8 @@ const howManyTreats = (arr) => {
 
 const battleship = (board, row, col) => {
   // Solution code here...
+  const boardSpace = board[row][col];
+  return boardSpace === '#' ? 'hit' : 'miss';
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -72,6 +74,13 @@ const battleship = (board, row, col) => {
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  let results = 1;
+  numbers.forEach((arr) => {
+    arr.forEach((num) => {
+      results *= num;
+    });
+  });
+  return results;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -93,6 +102,15 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  let results = 0;
+  let days = 0;
+  weather.forEach((week) => {
+    week.forEach((day) => {
+      days++;
+      results += day;
+    });
+  });
+  return results / days;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -115,6 +133,16 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let result = 100;
+  weather.forEach((week) => {
+    let weeklyTemp = 0;
+    week.forEach((day) => {
+      weeklyTemp += day;
+    });
+    weeklyTemp /= 7;
+    result = weeklyTemp < result ? weeklyTemp : result;
+  });
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -144,6 +172,18 @@ const lowestWeeklyAverage = (weather) => {
 
 const excel = (str) => {
   // Solution code here...
+  const result = [];
+  const newArray = [];
+  let splitString = str.split('\n');
+  splitString.forEach((row) => {
+    const newRow = row.split(',');
+    let rowTotal = 0;
+    newRow.forEach((num) => {
+      rowTotal += parseInt(num);
+    });
+    result.push(rowTotal);
+  });
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -170,6 +210,22 @@ const excel = (str) => {
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
+  let result = false;
+  const checkForWinner = (a, b, c) => {
+    if ((a === 'X' && b === 'X' && c === 'X') || (a === 'O' && b === 'O' && c === 'O')) {
+      return true;
+    }
+  };
+  for (let i = 0; i < 3; i++) {
+    if (checkForWinner(board[0][i], board[1][i], board[2][i]) || 
+    checkForWinner(board[i][0], board[i][1], board[i][2])) {
+      result = true;
+    }
+  }
+  if (checkForWinner(board[0][0], board[1][1], board[2][2]) || checkForWinner(board[0][2], board[1][1], board[2][0])) {
+    result = true;
+  }
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -201,6 +257,32 @@ const detectTicTacToeWin = (board) => {
 
 const minesweeper = (board) => {
   // Solution code here...
+  const result = [];
+  const checkCell = (row, col) => {
+    if (row > 4 || row < 0) {
+      return 0;
+    } else {
+      return board[row][col] === '*' ? 1 : 0;
+    }
+  };
+  const checkSurrounding = (row, col) => {
+    let surroundingCells = 0;
+    for (let x = -1; x < 2; x++) {
+      for (let y = -1; y < 2; y++) {
+        surroundingCells += checkCell(row + x, col + y);
+      }
+    }
+    return surroundingCells;
+  };
+  board.forEach((row, i) => {
+    const newRow = [];
+    row.forEach((cell, j) => {
+      const cellValue = cell === '*' ? 9 : checkSurrounding(i, j);
+      newRow.push(cellValue);
+    });
+    result.push(newRow);
+  });
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
