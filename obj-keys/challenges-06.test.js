@@ -131,7 +131,7 @@ const totalCharacters = arr => {
 //
 // Write a function named getHouses that returns an array of the houses in the data set.
 // Use the getFrom function you wrote in challenge 4.
-// ------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------
 
 const getHouses = arr => {
   // Solution code here.
