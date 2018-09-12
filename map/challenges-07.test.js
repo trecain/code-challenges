@@ -71,7 +71,7 @@ const charCode = (input) => input.map(char => char.charCodeAt(0));
 // For example: evenOdd([1,2,3]) returns ['odd','even','odd'].
 // ------------------------------------------------------------------------------------------------
 
-const evenOdd = (input) => input.map(el => el % 2 === 0 ? 'even' : 'odd');
+const evenOdd = (input) => input.map(el => isNaN(el) ? 'N/A' : el % 2 === 0 ? 'even' : 'odd');
 
 
 // ------------------------------------------------------------------------------------------------
@@ -160,9 +160,8 @@ const snorlaxStats = {
   weight: 4600,
 };
 
-const extractStats = (stats) => {
-  // Solution code here...
-};
+const extractStats = stats => stats.map(stat => ({ name: stat.stat.name, total: stat.effort + stat.baseStat }));
+
 
 // ------------------------------------------------------------------------------------------------
 // TESTS
