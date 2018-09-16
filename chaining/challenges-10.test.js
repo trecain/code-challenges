@@ -14,16 +14,8 @@
 
 const count = (target, input) => {
   // Solution code here...
-  let amountOfTimesIntegerPresent = [];
-  input.map(num => {
-    num.forEach(n => {
-      if (n === target) {
-        amountOfTimesIntegerPresent.push(n);
-      }
-    });
-  });
-  return amountOfTimesIntegerPresent.length;
-};
+  return input.reduce((acc, currentVal) => acc.concat(currentVal), []).filter(num => num === target).length;
+}
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 2
@@ -36,6 +28,7 @@ const count = (target, input) => {
 
 const totalSum = (input) => {
   // Solution code here...
+  return input.reduce((acc, currentVal) => acc.concat(currentVal), []).reduce((acc, currentVal) => acc + currentVal, 0);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -51,8 +44,15 @@ const totalSum = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
+  return input.map(el => {
+    return el.filter(num => {
+      return typeof(num) === 'number' && num % 5 === 0 
+    })
+    .map(num => Math.pow( 2, num ))
+  });
 };
+
+
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 4
@@ -117,6 +117,9 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  return data.filter(obj => obj.gender === "male" || obj.gender === "female")
+  .map(el => el.name)
+  .join(' and ');
 }
 
 // ------------------------------------------------------------------------------------------------
